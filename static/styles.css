@@ -1,0 +1,161 @@
+/* Estiliza o corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contêiner centralizado */
+.container-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+/* Estiliza o título */
+h2 {
+    color: #333;
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rótulos dos campos */
+label {
+    text-align: left;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #555;
+}
+
+/* Campos de entrada */
+input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Efeito ao focar nos inputs */
+input:focus {
+    border: 2px solid #007bff;
+    outline: none;
+}
+
+/* Botão de agendamento */
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+/* Efeito ao passar o mouse no botão */
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Botão de listar consultas */
+#btn-listar {
+    background-color: #28a745;
+}
+
+#btn-listar:hover {
+    background-color: #1e7e34;
+}
+/* Estiliza a tabela da listagem de consultas */
+.container-list {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 900px;
+    text-align: center;
+    margin-top: 30px;
+}
+/* Tabela estilizada */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho da tabela */
+th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Linhas da tabela */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Alterna a cor das linhas para melhor legibilidade */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Botão de voltar */
+.btn-voltar {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.btn-voltar:hover {
+    background-color: #1e7e34;
+}
+
+/* Estiliza o box de mensagem */
+#message-box {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Mensagem de sucesso */
+.success {
+    background-color: #28a745;
+    color: white;
+}
+
+/* Mensagem de erro */
+.error {
+    background-color: #dc3545;
+    color: white;
+}
