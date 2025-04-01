@@ -1,73 +1,64 @@
+
 document.addEventListener("DOMContentLoaded", function () {
-    const form = document.querySelector("form");
-    const submitButton = form.querySelector("button[type='submit']");
-    const listarButton = document.querySelector("#btn-listar"); // Seleciona o botão de listar
-    const messageBox = document.createElement("div");
+    document.body.addEventListener("click", async function (event) {
+        if (event.target.classList.contains("delete-btn")) {
+            const agendamentoId = event.target.dataset.id;
 
-    // Configuração do box de mensagens
-    messageBox.id = "message-box";
-    messageBox.style.display = "none";
-    form.appendChild(messageBox);
+            const confirmDelete = confirm("Tem certeza que deseja excluir este agendamento?");
+            if (!confirmDelete) return;
 
-    // Adiciona efeito de foco nos campos de entrada
-    const inputs = form.querySelectorAll("input");
-    inputs.forEach(input => {
-        input.addEventListener("focus", () => {
-            input.style.border = "2px solid #007bff";
-            input.style.transition = "border 0.3s ease";
-        });
+            try {
+                const response = await fetch(`/delete/${agendamentoId}`, {
+                    method: "POST",
+                });
 
-        input.addEventListener("blur", () => {
-            input.style.border = "1px solid #ccc";
-        });
+                const result = await response.json();
+
+                if (result.success) {
+                    document.querySelector(`#row-${agendamentoId}`).remove();
+                    alert("Agendamento excluído com sucesso!");
+                } else {
+                    alert("Erro ao excluir o agendamento.");
+                }
+            } catch (error) {
+                console.error("Erro ao excluir:", error);
+            }
+        }
     });
+});
+
+// Novo código para a animação de sucesso e limpeza do formulário
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById('agendamentoForm');
+    const sucessoMensagem = document.getElementById('sucessoMensagem');
 
     form.addEventListener("submit", async function (event) {
-        event.preventDefault(); // Impede o comportamento padrão
+        event.preventDefault(); // Previne o envio do formulário tradicional
 
         const formData = new FormData(form);
-        submitButton.innerHTML = "Agendando...";
-        submitButton.disabled = true;
 
         try {
-            const response = await fetch("/", { 
+            const response = await fetch("/agendar", {
                 method: "POST",
                 body: formData,
             });
 
             if (response.ok) {
-                showMessage("Agendamento realizado com sucesso!", "success");
-                form.reset();
+                sucessoMensagem.style.display = 'block';
+                sucessoMensagem.classList.add('animacaoSucesso');
+
+                // Limpa os dados do formulário após 2 segundos
+                setTimeout(function () {
+                    form.reset();
+                    sucessoMensagem.style.display = 'none';
+                }, 2000); 
             } else {
-                throw new Error("Erro ao agendar consulta.");
+                alert("Erro ao salvar o agendamento.");
             }
         } catch (error) {
-            showMessage(error.message, "error");
-        } finally {
-            submitButton.innerHTML = "Agendar";
-            submitButton.disabled = false;
+            console.error("Erro ao enviar dados:", error);
+            alert("Erro ao enviar dados.");
         }
     });
-
-    // Garante que o botão de listar funcione corretamente
-    if (listarButton) {
-        listarButton.addEventListener("click", function () {
-            window.location.href = "/consultas"; // Redireciona para a página de listagem
-        });
-    }
-
-    // Função para exibir mensagens animadas
-    function showMessage(text, type) {
-        messageBox.textContent = text;
-        messageBox.className = type;
-        messageBox.style.display = "block";
-        messageBox.style.opacity = "1";
-
-        setTimeout(() => {
-            messageBox.style.opacity = "0";
-            setTimeout(() => {
-                messageBox.style.display = "none";
-            }, 500);
-        }, 3000);
-    }
 });
+

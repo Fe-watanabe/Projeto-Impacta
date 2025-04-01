@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Agendamentos</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container-list">
+    <div class="list-container">
         <h2>Lista de Agendamentos</h2>
         <table>
             <thead>
@@ -17,21 +17,26 @@
                     <th>Telefone</th>
                     <th>Data</th>
                     <th>Hora</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for consulta in consultas %}
-                <tr>
-                    <td>{{ consulta.nome }}</td>
-                    <td>{{ consulta.email }}</td>
-                    <td>{{ consulta.telefone }}</td>
-                    <td>{{ consulta.data_consulta }}</td>
-                    <td>{{ consulta.hora_consulta }}</td>
+                {% for agendamento in agendamentos %}
+                <tr id="row-{{ agendamento.id }}">
+                    <td>{{ agendamento.nome }}</td>
+                    <td>{{ agendamento.email }}</td>
+                    <td>{{ agendamento.telefone }}</td>
+                    <td>{{ agendamento.data }}</td>
+                    <td>{{ agendamento.hora }}</td>
+                    <td>
+                        <button class="delete-btn" data-id="{{ agendamento.id }}">🗑 Excluir</button>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <a href="/" class="btn-voltar">Voltar</a>
+        <a href="{{ url_for('index') }}"><button class="back-btn">Voltar</button></a>
     </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

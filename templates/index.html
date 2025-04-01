@@ -4,31 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento de Consulta</title>
-    <link rel="stylesheet" href="static/styles.css">
-    <script src="static/script.js" defer></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <div class="container-form">
+    <div class="container">
         <h2>Agendamento de Consulta</h2>
-        <form id="form-agendamento" action="/" method="post">
+        <form id="agendamentoForm" action="/agendar" method="POST">
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome" required>
-
+            
             <label for="email">E-mail:</label>
             <input type="email" id="email" name="email" required>
-
+            
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" required>
-
+            
             <label for="data">Data da Consulta:</label>
             <input type="date" id="data" name="data" required>
-
+            
             <label for="hora">Hora da Consulta:</label>
             <input type="time" id="hora" name="hora" required>
-
+            
             <button type="submit">Agendar</button>
-            <button id="btn-listar" type="button">Listar Consultas</button>
+            <button onclick="window.location.href='/consultas';">Listar Agendamentos</button>
         </form>
+
+        <!-- Mensagem de sucesso -->
+        <div id="sucessoMensagem" class="mensagem">
+            <p>Agendamento realizado com sucesso!</p>
+        </div>
     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

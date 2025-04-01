@@ -1,161 +1,235 @@
-/* Estiliza o corpo da página */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+/* Reset global */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Estilização do corpo da página */
+body {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-}
-
-/* Contêiner centralizado */
-.container-form {
-    background: white;
+    flex-direction: column;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    text-align: center;
 }
 
-/* Estiliza o título */
+/* Container principal */
+.container, .list-container {
+    width: 100%;
+    max-width: 600px;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.container:hover, .list-container:hover {
+    transform: scale(1.02);
+}
+
+/* Título */
 h2 {
+    font-size: 24px;
     color: #333;
+    margin-bottom: 20px;
 }
 
 /* Formulário */
 form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
 }
 
-/* Rótulos dos campos */
-label {
-    text-align: left;
-    font-weight: bold;
-    margin-top: 10px;
-    color: #555;
-}
-
-/* Campos de entrada */
+/* Estilo dos inputs */
 input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
-    margin-top: 5px;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: 0.3s;
 }
 
-/* Efeito ao focar nos inputs */
 input:focus {
-    border: 2px solid #007bff;
+    border-color: #007bff;
     outline: none;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
 }
 
-/* Botão de agendamento */
+/* Botões */
 button {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
+    width: 100%;
+    padding: 12px;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 16px;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Botão de Agendar */
+button[type="submit"] {
+    background: #007bff;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background: #0056b3;
+}
+
+/* Botão de Listar */
+.listar-btn {
+    background: #28a745;
+    color: white;
+}
+
+.listar-btn:hover {
+    background: #218838;
+}
+
+/* Botão de Excluir */
+.delete-btn {
+    background: #dc3545;
+    color: white;
+    padding: 8px 12px;  /* Ajustando o padding para que o botão fique proporcional */
+    border: none;
+    border-radius: 6px;
+    font-size: 14px; /* Ajuste para deixar o texto no botão mais proporcional */
+    cursor: pointer;
     transition: background 0.3s ease;
-}
-
-/* Efeito ao passar o mouse no botão */
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Botão de listar consultas */
-#btn-listar {
-    background-color: #28a745;
-}
-
-#btn-listar:hover {
-    background-color: #1e7e34;
-}
-/* Estiliza a tabela da listagem de consultas */
-.container-list {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 900px;
+    width: 100%; /* Garantindo que o botão ocupe toda a largura da célula */
     text-align: center;
-    margin-top: 30px;
 }
-/* Tabela estilizada */
+
+.delete-btn:hover {
+    background: #c82333;
+}
+
+td:last-child {
+    width: 10%; /* Garantindo que a coluna de ações tenha o tamanho certo */
+    padding: 10px;
+}
+
+.delete-btn {
+    display: block;
+    margin: 0 auto; /* Centraliza o botão dentro da célula */
+}
+
+/* Estilização da Tabela */
 table {
     width: 100%;
+    max-width: 900px; /* Aumenta a largura da tabela */
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Estilizando o container da lista */
+.list-container {
+    width: 100%;
+    max-width: 1000px; /* Garantindo que o container possa expandir com a tabela */
+    padding: 25px;
+    margin: 0 auto;
     background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow-x: auto; /* Permite que a tabela se mova horizontalmente se necessário */
 }
 
-/* Cabeçalho da tabela */
-th {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    text-align: left;
+/* Melhorando a aparência da tabela */
+table {
+    width: 100%; /* Garante que a tabela ocupe toda a largura do container */
+    max-width: 100%; /* Impede que a tabela ultrapasse o container */
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed; /* Isso fará com que as colunas não quebrem seu layout */
 }
 
-/* Linhas da tabela */
-td {
-    padding: 10px;
+/* Ajustando o espaçamento entre as colunas */
+th, td {
+    padding: 14px 20px; /* Aumenta o espaçamento interno */
+    text-align: center;
     border-bottom: 1px solid #ddd;
 }
 
-/* Alterna a cor das linhas para melhor legibilidade */
-tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
+/* Garantindo que as colunas fiquem bem distribuídas */
+th:nth-child(1), td:nth-child(1) { width: 25%; } /* Nome */
+th:nth-child(2), td:nth-child(2) { width: 30%; } /* E-mail */
+th:nth-child(3), td:nth-child(3) { width: 20%; } /* Telefone */
+th:nth-child(4), td:nth-child(4) { width: 15%; } /* Data */
+th:nth-child(5), td:nth-child(5) { width: 10%; } /* Hora */
+th:nth-child(6), td:nth-child(6) { width: 10%; } /* Ações */
 
-/* Botão de voltar */
-.btn-voltar {
-    display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #28a745;
+th {
+    background: #007bff;
     color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background 0.3s ease;
 }
 
-.btn-voltar:hover {
-    background-color: #1e7e34;
+td {
+    background: #f9f9f9;
 }
 
-/* Estiliza o box de mensagem */
-#message-box {
-    margin-top: 15px;
-    padding: 10px;
+/* Responsividade: quando a tela for pequena, permite a rolagem horizontal */
+@media screen and (max-width: 768px) {
+    table {
+        table-layout: auto;
+    }
+    th, td {
+        padding: 10px;
+    }
+}
+
+
+
+/* Estilização do botão de voltar */
+.back-btn {
+    margin-top: 20px;
+    background: #6c757d;
+    color: white;
+}
+
+.back-btn:hover {
+    background: #5a6268;
+}
+
+/* Estilo da mensagem de sucesso */
+.mensagem {
+    display: none; /* Inicialmente escondida */
     text-align: center;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* Mensagem de sucesso */
-.success {
+    margin-top: 20px;
     background-color: #28a745;
     color: white;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 18px;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Mensagem de erro */
-.error {
-    background-color: #dc3545;
-    color: white;
+/* Animação de aparecer */
+.animacaoSucesso {
+    animation: fadeIn 2s ease-in-out forwards;
+}
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
