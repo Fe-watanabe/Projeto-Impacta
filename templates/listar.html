@@ -29,6 +29,9 @@
                     <td>{{ agendamento.data }}</td>
                     <td>{{ agendamento.hora }}</td>
                     <td>
+                        <a href="{{ url_for('editar_agendamento', id=agendamento.id) }}">
+                            <button class="edit-btn">✏️ Editar</button>
+                        </a>
                         <button class="delete-btn" data-id="{{ agendamento.id }}">🗑 Excluir</button>
                     </td>
                 </tr>

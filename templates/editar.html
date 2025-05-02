@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Agendamento</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Editar Agendamento</h2>
+        <form action="{{ url_for('atualizar_agendamento', id=agendamento.id) }}" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ agendamento.nome }}" required>
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" value="{{ agendamento.email }}" required>
+
+            <label for="telefone">Telefone:</label>
+            <input type="tel" id="telefone" name="telefone" value="{{ agendamento.telefone }}" required>
+
+            <label for="data">Data da Consulta:</label>
+            <input type="date" id="data" name="data" value="{{ agendamento.data }}" required>
+
+            <label for="hora">Hora da Consulta:</label>
+            <input type="time" id="hora" name="hora" value="{{ agendamento.hora }}" required>
+
+            <button type="submit">Salvar Alterações</button>
+            <a href="{{ url_for('listar_agendamentos') }}"><button type="button" class="back-btn">Cancelar</button></a>
+        </form>
+    </div>
+</body>
+</html>
+

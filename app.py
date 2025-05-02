@@ -55,5 +55,25 @@ def delete_agendamento(id):
         return jsonify({"success": True})
     return jsonify({"success": False, "message": "Agendamento não encontrado"}), 404
 
+
+# Rota para exibir o formulário de edição
+@app.route("/editar/<int:id>")
+def editar_agendamento(id):
+    agendamento = Agendamento.query.get_or_404(id)
+    return render_template("editar.html", agendamento=agendamento)
+
+# Rota para atualizar os dados no banco
+@app.route("/atualizar/<int:id>", methods=["POST"])
+def atualizar_agendamento(id):
+    agendamento = Agendamento.query.get_or_404(id)
+    agendamento.nome = request.form["nome"]
+    agendamento.email = request.form["email"]
+    agendamento.telefone = request.form["telefone"]
+    agendamento.data = request.form["data"]
+    agendamento.hora = request.form["hora"]
+
+    db.session.commit()
+    return redirect(url_for("listar_agendamentos"))
+
 if __name__ == "__main__":
     app.run(debug=True)
