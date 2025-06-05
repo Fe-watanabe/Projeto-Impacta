@@ -9,6 +9,10 @@
 <body>
     <div class="list-container">
         <h2>Lista de Agendamentos</h2>
+        <form method="get" action="{{ url_for('listar_agendamentos') }}" class="search-form">
+            <input type="text" name="termo" placeholder="Buscar por nome, e-mail ou telefone..." value="{{ termo or '' }}">
+            <button type="submit">🔍 Buscar</button>
+        </form>        
         <table>
             <thead>
                 <tr>

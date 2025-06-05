@@ -249,3 +249,34 @@ td {
 .edit-btn:hover {
     background: #e0a800;
 }
+
+/* Search */
+.search-form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.search-form input[type="text"] {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    width: 60%;
+    font-size: 16px;
+}
+
+.search-form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.search-form button:hover {
+    background: #0056b3;
+}

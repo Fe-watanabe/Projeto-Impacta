@@ -42,8 +42,19 @@ def agendar():
 # Página para listar agendamentos
 @app.route("/consultas")
 def listar_agendamentos():
-    agendamentos = Agendamento.query.all()
-    return render_template("listar.html", agendamentos=agendamentos)
+    termo = request.args.get("termo", "").strip()
+    
+    if termo:
+        agendamentos = Agendamento.query.filter(
+            (Agendamento.nome.ilike(f"%{termo}%")) |
+            (Agendamento.email.ilike(f"%{termo}%")) |
+            (Agendamento.telefone.ilike(f"%{termo}%"))
+        ).all()
+    else:
+        agendamentos = Agendamento.query.all()
+
+    return render_template("listar.html", agendamentos=agendamentos, termo=termo)
+
 
 # Rota para excluir um agendamento
 @app.route("/delete/<int:id>", methods=["POST"])
